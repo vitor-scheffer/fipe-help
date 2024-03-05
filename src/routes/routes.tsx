@@ -1,5 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import { Home } from "../screens/home/view/Home";
+import { Home, CarDetails } from "../screens";
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -9,6 +9,14 @@ export function StackRoutes() {
       <Screen
         name="Home"
         component={Home}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Screen
+        name="CarDetails"
+        component={CarDetails}
         options={{
           headerShown: false,
         }}
