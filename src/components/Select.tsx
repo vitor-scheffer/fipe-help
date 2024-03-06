@@ -17,11 +17,12 @@ interface Props {
   options: Array<CarItem> | undefined;
   title: string;
   onChangeOptions: (id: string) => void;
+  disabled: boolean
 }
 
 const { width } = Dimensions.get("window");
 
-export function Select({ options, onChangeOptions, title }: Props) {
+export function Select({ options, onChangeOptions, title, disabled }: Props) {
   const [textTitle, setTextTitle] = useState<string>(title);
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [selected, setSelected] = useState<string>("");
@@ -36,8 +37,9 @@ export function Select({ options, onChangeOptions, title }: Props) {
   return (
     <View>
       <TouchableOpacity
-        style={styles.container}
+        style={!disabled ? styles.container : styles.containerDisabled}
         onPress={() => setShowOptions(true)}
+        disabled={disabled}
       >
         <Text style={styles.text} numberOfLines={1}>
           {textTitle}
@@ -80,6 +82,18 @@ const styles = StyleSheet.create({
   container: {
     height: 50,
     backgroundColor: "#ecf5ff",
+    borderWidth: 1,
+    marginHorizontal: 20,
+    borderRadius: 6,
+    borderColor: "#CCC",
+    paddingHorizontal: 16,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  containerDisabled: {
+    height: 50,
+    backgroundColor: "#CCC",
     borderWidth: 1,
     marginHorizontal: 20,
     borderRadius: 6,

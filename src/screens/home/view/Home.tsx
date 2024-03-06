@@ -36,16 +36,19 @@ export function Home() {
         options={listCarBrands}
         title="Marca"
         onChangeOptions={(idBrand) => setIdBrand(Number(idBrand))}
+        disabled={!listCarBrands}
       />
       <Select
         options={listCarModels?.modelos}
         title="Modelo"
         onChangeOptions={(idModel) => setIdModel(Number(idModel))}
+        disabled={!idBrand}
       />
       <Select
         options={listCarYears}
         title="Anos"
         onChangeOptions={(idYear) => setIdYear(idYear)}
+        disabled={!idModel}
       />
       <Loading visible={isLoading} />
     </SafeAreaView>
