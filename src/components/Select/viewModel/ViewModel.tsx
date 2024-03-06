@@ -12,6 +12,11 @@ export const useSelectViewModel = () => {
     setSelected(item.codigo);
   };
 
+  const onClearSelect = (title: string) => {
+    setTextTitle(title);
+    setSelected("");
+  };
+
   return {
     textTitle,
     setTextTitle,
@@ -20,5 +25,6 @@ export const useSelectViewModel = () => {
     selected,
     setSelected,
     onSelectCell,
+    onClearSelect,
   };
 };

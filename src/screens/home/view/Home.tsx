@@ -17,10 +17,12 @@ export function Home() {
     idModel,
     setIdModel,
     listCarYears,
+    idYear,
     setIdYear,
     carDetails,
     showDetails,
-    setShowDetails
+    setShowDetails,
+    clearFilters,
   } = useHomeViewModel();
 
   useEffect(() => {
@@ -36,25 +38,49 @@ export function Home() {
       <Select
         options={listCarBrands}
         title="Marca"
-        onChangeOptions={(idBrand) => setIdBrand(Number(idBrand))}
+        onChangeOptions={(idBrand) => {
+          setIdBrand(Number(idBrand));
+          clearFilters(true);
+        }}
         disabled={!listCarBrands}
+        clear={idBrand === undefined}
       />
       <Select
         options={listCarModels?.modelos}
         title="Modelo"
         onChangeOptions={(idModel) => setIdModel(Number(idModel))}
         disabled={!idBrand}
+        clear={idModel === undefined}
       />
       <Select
         options={listCarYears}
         title="Anos"
         onChangeOptions={(idYear) => setIdYear(idYear)}
         disabled={!idModel}
+        clear={idYear === undefined}
       />
-      <TouchableOpacity style={!carDetails ? styles.buttonDisabled : styles.button} disabled={!carDetails} onPress={() => setShowDetails(true)}>
-        <Text style={!carDetails ? styles.buttonTextDisabled : styles.buttonText}>Consultar carro</Text>
+      <TouchableOpacity
+        style={styles.buttonSecondary}
+        onPress={() => clearFilters()}
+      >
+        <Text style={styles.buttonSecondaryText}>Limpar filtros</Text>
       </TouchableOpacity>
-      <Details isOpen={showDetails} carData={carDetails} onClose={() => setShowDetails(false)}/>
+      <TouchableOpacity
+        style={!carDetails ? styles.buttonDisabled : styles.button}
+        disabled={!carDetails}
+        onPress={() => setShowDetails(true)}
+      >
+        <Text
+          style={!carDetails ? styles.buttonTextDisabled : styles.buttonText}
+        >
+          Consultar carro
+        </Text>
+      </TouchableOpacity>
+      <Details
+        isOpen={showDetails}
+        carData={carDetails}
+        onClose={() => setShowDetails(false)}
+      />
       <Loading visible={isLoading} />
     </SafeAreaView>
   );
@@ -66,16 +92,14 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   button: {
-    marginTop: 20,
     marginHorizontal: 20,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 8,
     height: 45,
-    backgroundColor: "#06b2fc"
+    backgroundColor: "#06b2fc",
   },
   buttonDisabled: {
-    marginTop: 20,
     marginHorizontal: 20,
     alignItems: "center",
     justifyContent: "center",
@@ -83,12 +107,27 @@ const styles = StyleSheet.create({
     height: 45,
     backgroundColor: "#CCC",
   },
+  buttonSecondary: {
+    marginTop: 20,
+    marginHorizontal: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 8,
+    height: 45,
+    borderColor: "#06b2fc",
+    borderWidth: 1,
+    backgroundColor: "#ffff",
+  },
   buttonText: {
     color: "#ffff",
+    fontWeight: "700",
+  },
+  buttonSecondaryText: {
+    color: "#06b2fc",
     fontWeight: "700",
   },
   buttonTextDisabled: {
     color: "#555",
     fontWeight: "700",
-  }
+  },
 });

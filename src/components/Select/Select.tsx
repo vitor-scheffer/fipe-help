@@ -18,11 +18,18 @@ interface Props {
   title: string;
   onChangeOptions: (id: string) => void;
   disabled: boolean;
+  clear: boolean;
 }
 
 const { width } = Dimensions.get("window");
 
-export function Select({ options, onChangeOptions, title, disabled }: Props) {
+export function Select({
+  options,
+  onChangeOptions,
+  title,
+  disabled,
+  clear,
+}: Props) {
   const {
     textTitle,
     setTextTitle,
@@ -30,11 +37,18 @@ export function Select({ options, onChangeOptions, title, disabled }: Props) {
     setShowOptions,
     selected,
     onSelectCell,
+    onClearSelect,
   } = useSelectViewModel();
 
   useEffect(() => {
     setTextTitle(title);
   }, []);
+
+  useEffect(() => {
+    if (clear) {
+      onClearSelect(title);
+    }
+  }, [clear]);
 
   return (
     <View>
@@ -59,9 +73,6 @@ export function Select({ options, onChangeOptions, title, disabled }: Props) {
             <Ionicons name="chevron-back" size={24} color="white" />
           </TouchableOpacity>
           <Text style={styles.headerTitle}>{title}</Text>
-          <TouchableOpacity onPress={() => setShowOptions(false)}>
-            <Text style={{ color: "white" }}>Limpar</Text>
-          </TouchableOpacity>
         </View>
         <FlatList
           data={options}
@@ -118,7 +129,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    gap: 10,
     alignItems: "flex-end",
     paddingHorizontal: 16,
     paddingVertical: 10,

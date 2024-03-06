@@ -96,6 +96,13 @@ export const useHomeViewModel = () => {
     }
   };
 
+  const clearFilters = (isBrand?: boolean) => {
+    if (!isBrand) setIdBrand(undefined);
+    setIdModel(undefined);
+    setIdYear(undefined);
+    setCarDetails(undefined);
+  }
+
   return {
     listCarBrands,
     listCarModels,
@@ -113,6 +120,7 @@ export const useHomeViewModel = () => {
     setIdYear,
     carDetails,
     showDetails,
-    setShowDetails
+    setShowDetails,
+    clearFilters
   };
 };
