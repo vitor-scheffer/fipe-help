@@ -5,13 +5,13 @@ import {
   CarItem,
   CarModels,
   CarModelsInput,
-  CarYearsInput,
+  CarYearsInput
 } from "../../../data/models/car";
 import {
   getBrands,
   getModels,
   getYears,
-  getCarDetails,
+  getCarDetails
 } from "../../../data/repositories/car";
 
 export const useHomeViewModel = () => {
@@ -20,6 +20,7 @@ export const useHomeViewModel = () => {
   const [listCarYears, setListCarYears] = useState<Array<CarItem>>();
   const [carDetails, setCarDetails] = useState<CarDetails>();
   const [isLoading, setIsLoading] = useState<boolean>();
+  const [showDetails, setShowDetails] = useState<boolean>();
 
   const [idBrand, setIdBrand] = useState<number | undefined>(undefined);
   const [idModel, setIdModel] = useState<number | undefined>(undefined);
@@ -110,6 +111,8 @@ export const useHomeViewModel = () => {
     setIdModel,
     idYear,
     setIdYear,
-    carDetails
+    carDetails,
+    showDetails,
+    setShowDetails
   };
 };

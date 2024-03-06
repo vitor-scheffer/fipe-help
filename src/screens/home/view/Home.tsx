@@ -1,8 +1,8 @@
 import { useIsFocused } from "@react-navigation/native";
 import { useEffect } from "react";
-import { SafeAreaView, Text, StyleSheet } from "react-native";
+import { SafeAreaView, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { useHomeViewModel } from "../viewModel/ViewModel";
-import { Select, Loading } from "../../../components";
+import { Select, Loading, Details } from "../../../components";
 
 export function Home() {
   const focused = useIsFocused();
@@ -17,9 +17,10 @@ export function Home() {
     idModel,
     setIdModel,
     listCarYears,
-    idYear,
     setIdYear,
     carDetails,
+    showDetails,
+    setShowDetails
   } = useHomeViewModel();
 
   useEffect(() => {
@@ -50,6 +51,10 @@ export function Home() {
         onChangeOptions={(idYear) => setIdYear(idYear)}
         disabled={!idModel}
       />
+      <TouchableOpacity style={!carDetails ? styles.buttonDisabled : styles.button} disabled={!carDetails} onPress={() => setShowDetails(true)}>
+        <Text style={!carDetails ? styles.buttonTextDisabled : styles.buttonText}>Consultar carro</Text>
+      </TouchableOpacity>
+      <Details isOpen={showDetails} carData={carDetails} onClose={() => setShowDetails(false)}/>
       <Loading visible={isLoading} />
     </SafeAreaView>
   );
@@ -60,4 +65,30 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFF",
     gap: 16,
   },
+  button: {
+    marginTop: 20,
+    marginHorizontal: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 8,
+    height: 45,
+    backgroundColor: "#06b2fc"
+  },
+  buttonDisabled: {
+    marginTop: 20,
+    marginHorizontal: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 8,
+    height: 45,
+    backgroundColor: "#CCC",
+  },
+  buttonText: {
+    color: "#ffff",
+    fontWeight: "700",
+  },
+  buttonTextDisabled: {
+    color: "#555",
+    fontWeight: "700",
+  }
 });
