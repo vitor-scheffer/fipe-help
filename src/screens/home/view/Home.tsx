@@ -1,13 +1,13 @@
 import { useIsFocused } from "@react-navigation/native";
 import { useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { SafeAreaView, Text, StyleSheet } from "react-native";
 import { useHomeViewModel } from "../viewModel/ViewModel";
-import { Loading } from "../../../components/Loading";
+import { Select, Loading } from "../../../components";
 
 export function Home() {
   const focused = useIsFocused();
 
-  const { getCarBrands, isLoading } = useHomeViewModel();
+  const { isLoading, getCarBrands, listCarBrands } = useHomeViewModel();
 
   useEffect(() => {
     async function getData() {
@@ -18,17 +18,18 @@ export function Home() {
   }, [focused]);
 
   return (
-    <View style={styles.container}>
-      <Text>Hello World</Text>
-      <Loading visible={isLoading}/>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Select options={listCarBrands} title="Marca" onChangeOptions={(id) => alert(id)}/>
+      <Select options={listCarBrands} title="Modelo" onChangeOptions={(id) => alert(id)}/>
+      <Select options={listCarBrands} title="Ano" onChangeOptions={(id) => alert(id)}/>
+      <Loading visible={isLoading} />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: "#FFFFF",
+    gap: 8
   },
 });

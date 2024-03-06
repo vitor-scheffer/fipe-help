@@ -24,7 +24,7 @@ export const useHomeViewModel = () => {
       setIsLoading(true);
       const response = await getBrands();
       setIsLoading(false);
-      return response;
+      setListCarBrands(response);
     } catch (error) {
       alert(error);
       setIsLoading(false);
