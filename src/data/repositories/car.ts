@@ -5,7 +5,7 @@ import {
   CarModels,
   CarModelsInput,
   CarYearsInput,
-} from "../models/car";
+} from "../models";
 import { api } from "../api";
 
 export const getBrands = async () => {
