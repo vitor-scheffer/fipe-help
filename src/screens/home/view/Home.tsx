@@ -108,7 +108,6 @@ const styles = StyleSheet.create({
   logoText: {
     fontSize: 40,
     fontWeight: "700",
-    fontFamily: "Helvetica",
     color: "#06b2fc",
   },
   button: {
