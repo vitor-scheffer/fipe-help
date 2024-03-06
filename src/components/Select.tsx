@@ -36,6 +36,7 @@ export function Select({ options, onChangeOptions, title, disabled }: Props) {
 
   return (
     <View>
+      <Text style={styles.title}>{title}</Text>
       <TouchableOpacity
         style={!disabled ? styles.container : styles.containerDisabled}
         onPress={() => setShowOptions(true)}
@@ -79,6 +80,10 @@ export function Select({ options, onChangeOptions, title, disabled }: Props) {
 }
 
 const styles = StyleSheet.create({
+  title: {
+    marginHorizontal: 20,
+    marginBottom: 6
+  },
   container: {
     height: 50,
     backgroundColor: "#ecf5ff",

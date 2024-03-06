@@ -58,6 +58,6 @@ export function Home() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#FFFFF",
-    gap: 8,
+    gap: 16,
   },
 });
