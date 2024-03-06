@@ -1,3 +1,3 @@
-export * from "./Loading";
-export * from "./Select";
-export * from "./Details";
+export * from "./Loading/Loading";
+export * from "./Select/Select";
+export * from "./Details/Details";

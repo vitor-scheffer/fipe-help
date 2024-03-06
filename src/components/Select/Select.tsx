@@ -6,33 +6,35 @@ import {
   Dimensions,
   Modal,
   FlatList,
-  SafeAreaView,
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useState } from "react";
-import { CarItem } from "../data/models/car";
+import { CarItem } from "../../data/models/car";
 import { CarItemCell } from "./CarItemCell";
+import { useSelectViewModel } from "./viewModel/ViewModel";
+import { useEffect } from "react";
 
 interface Props {
   options: Array<CarItem> | undefined;
   title: string;
   onChangeOptions: (id: string) => void;
-  disabled: boolean
+  disabled: boolean;
 }
 
 const { width } = Dimensions.get("window");
 
 export function Select({ options, onChangeOptions, title, disabled }: Props) {
-  const [textTitle, setTextTitle] = useState<string>(title);
-  const [showOptions, setShowOptions] = useState<boolean>(false);
-  const [selected, setSelected] = useState<string>("");
+  const {
+    textTitle,
+    setTextTitle,
+    showOptions,
+    setShowOptions,
+    selected,
+    onSelectCell,
+  } = useSelectViewModel();
 
-  const onSelectCell = (item: CarItem) => {
-    onChangeOptions(item.codigo);
-    setTextTitle(item.nome);
-    setShowOptions(false);
-    setSelected(item.codigo);
-  };
+  useEffect(() => {
+    setTextTitle(title);
+  }, []);
 
   return (
     <View>
@@ -52,28 +54,29 @@ export function Select({ options, onChangeOptions, title, disabled }: Props) {
         animationType="slide"
         onRequestClose={() => setShowOptions(false)}
       >
-        <SafeAreaView>
-          <View style={styles.header}>
-            <TouchableOpacity onPress={() => setShowOptions(false)}>
-              <Ionicons name="chevron-back" size={24} color="white" />
-            </TouchableOpacity>
-            <Text style={styles.headerTitle}>{title}</Text>
-            <TouchableOpacity onPress={() => setShowOptions(false)}>
-              <Text style={{ color: "white" }}>Limpar</Text>
-            </TouchableOpacity>
-          </View>
-          <FlatList
-            data={options}
-            keyExtractor={(item) => String(item.codigo)}
-            renderItem={(item) => (
-              <CarItemCell
-                item={item.item}
-                selected={selected}
-                onSelectCell={(item) => onSelectCell(item)}
-              />
-            )}
-          />
-        </SafeAreaView>
+        <View style={styles.header}>
+          <TouchableOpacity onPress={() => setShowOptions(false)}>
+            <Ionicons name="chevron-back" size={24} color="white" />
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>{title}</Text>
+          <TouchableOpacity onPress={() => setShowOptions(false)}>
+            <Text style={{ color: "white" }}>Limpar</Text>
+          </TouchableOpacity>
+        </View>
+        <FlatList
+          data={options}
+          keyExtractor={(item) => String(item.codigo)}
+          renderItem={(item) => (
+            <CarItemCell
+              item={item.item}
+              selected={selected}
+              onSelectCell={(item) => {
+                onSelectCell(item);
+                onChangeOptions(item.codigo);
+              }}
+            />
+          )}
+        />
       </Modal>
     </View>
   );
@@ -82,7 +85,7 @@ export function Select({ options, onChangeOptions, title, disabled }: Props) {
 const styles = StyleSheet.create({
   title: {
     marginHorizontal: 20,
-    marginBottom: 6
+    marginBottom: 6,
   },
   container: {
     height: 50,
@@ -117,11 +120,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-end",
-    borderBottomColor: "#ddd",
-    borderBottomWidth: 1,
     paddingHorizontal: 16,
     paddingVertical: 10,
     backgroundColor: "#06b2fc",
+    height: 100,
   },
   headerTitle: {
     color: "#ffff",
