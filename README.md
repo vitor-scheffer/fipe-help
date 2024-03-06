@@ -10,7 +10,7 @@ App para consulta de carros através da Api https://deividfortuna.github.io/fipe
 1. Clonar repositório
 
 ```console
-git clone 
+git clone https://github.com/vitor-scheffer/fipe-help.git
 ```
 
 2. Instalar dependências
