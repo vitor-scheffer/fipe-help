@@ -21,6 +21,10 @@ yarn
 ```
 
 # Rodar o projeto
+
+1. Rodar através de emulador ou dispositivo próprio
+   (Para rodar em dispositivo próprio deve ter o App Expo Go)
+
 ```console
 npx expo start
 ```
