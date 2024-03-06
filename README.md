@@ -22,8 +22,8 @@ yarn
 
 # Rodar o projeto
 
-1. Rodar através de emulador ou dispositivo próprio
-   (Para rodar em dispositivo próprio deve ter o App Expo Go)
+1. Rodar através de simulador ou dispositivo próprio
+   (Para rodar em dispositivo próprio deve ter o app Expo Go)
 
 ```console
 npx expo start
