@@ -1,6 +1,12 @@
 import { useIsFocused } from "@react-navigation/native";
 import { useEffect } from "react";
-import { SafeAreaView, StyleSheet, TouchableOpacity, Text } from "react-native";
+import {
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  View,
+} from "react-native";
 import { useHomeViewModel } from "../viewModel/ViewModel";
 import { Select, Loading, Details } from "../../../components";
 
@@ -35,6 +41,9 @@ export function Home() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.logo}>
+        <Text style={styles.logoText}>FIPE Help</Text>
+      </View>
       <Select
         options={listCarBrands}
         title="Marca"
@@ -88,8 +97,19 @@ export function Home() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#FFFFF",
+    backgroundColor: "#ffffff",
     gap: 16,
+  },
+  logo: {
+    maxWidth: "100%",
+    margin: 50,
+    alignItems: "center",
+  },
+  logoText: {
+    fontSize: 40,
+    fontWeight: "700",
+    fontFamily: "Helvetica",
+    color: "#06b2fc",
   },
   button: {
     marginHorizontal: 20,
