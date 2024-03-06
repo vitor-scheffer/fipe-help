@@ -9,7 +9,7 @@ export function Loading({ visible }: Props) {
     return (
       <Modal visible={visible} transparent={true} animationType="fade">
         <View style={styles.container}>
-          <ActivityIndicator size="large" color="#00ff00" />
+          <ActivityIndicator size="large" color="#06b2fc" />
         </View>
       </Modal>
     );

@@ -29,7 +29,7 @@ export const getYears = async (input: CarYearsInput) => {
 
 export const getCarDetails = async (input: CarDetailsInput) => {
   const { data } = await api.get<CarDetails>(
-    `/v1/carros/marcas/${input.idBrand}/modelos/${input.idModel}/anos/${input.year}`
+    `/v1/carros/marcas/${input.idBrand}/modelos/${input.idModel}/anos/${input.idYear}`
   );
   return data;
 };

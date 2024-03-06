@@ -7,7 +7,20 @@ import { Select, Loading } from "../../../components";
 export function Home() {
   const focused = useIsFocused();
 
-  const { isLoading, getCarBrands, listCarBrands } = useHomeViewModel();
+  const {
+    isLoading,
+    getCarBrands,
+    listCarBrands,
+    idBrand,
+    setIdBrand,
+    listCarModels,
+    idModel,
+    setIdModel,
+    listCarYears,
+    idYear,
+    setIdYear,
+    carDetails,
+  } = useHomeViewModel();
 
   useEffect(() => {
     async function getData() {
@@ -19,9 +32,21 @@ export function Home() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Select options={listCarBrands} title="Marca" onChangeOptions={(id) => alert(id)}/>
-      <Select options={listCarBrands} title="Modelo" onChangeOptions={(id) => alert(id)}/>
-      <Select options={listCarBrands} title="Ano" onChangeOptions={(id) => alert(id)}/>
+      <Select
+        options={listCarBrands}
+        title="Marca"
+        onChangeOptions={(idBrand) => setIdBrand(Number(idBrand))}
+      />
+      <Select
+        options={listCarModels?.modelos}
+        title="Modelo"
+        onChangeOptions={(idModel) => setIdModel(Number(idModel))}
+      />
+      <Select
+        options={listCarYears}
+        title="Anos"
+        onChangeOptions={(idYear) => setIdYear(idYear)}
+      />
       <Loading visible={isLoading} />
     </SafeAreaView>
   );
@@ -30,6 +55,6 @@ export function Home() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#FFFFF",
-    gap: 8
+    gap: 8,
   },
 });

@@ -19,7 +19,7 @@ export interface CarYearsInput {
 export interface CarDetailsInput {
   idBrand: number;
   idModel: number;
-  year: string;
+  idYear: string;
 }
 
 export interface CarDetails {
