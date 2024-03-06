@@ -28,7 +28,8 @@ yarn
 ```console
 npx expo start
 ```
-(opcional)
+2. Rodar através do navegador (opcional)
+   
 ```console
 npx expo start --web
 ```
