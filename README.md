@@ -17,6 +17,7 @@ git clone https://github.com/vitor-scheffer/fipe-help.git
 
 ```console
 cd fipe-help
+npm i
 yarn
 ```
 
