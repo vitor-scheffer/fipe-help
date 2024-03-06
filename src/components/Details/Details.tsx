@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { CarDetails } from "../../data/models/car";
+import { CarDetails } from "../../data/models";
 
 interface Props {
   isOpen: boolean | undefined;

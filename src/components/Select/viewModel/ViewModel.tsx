@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CarItem } from "../../../data/models/car";
+import { CarItem } from "../../../data/models";
 
 export const useSelectViewModel = () => {
   const [textTitle, setTextTitle] = useState<string | undefined>(undefined);

@@ -6,7 +6,7 @@ import {
   CarModels,
   CarModelsInput,
   CarYearsInput
-} from "../../../data/models/car";
+} from "../../../data/models";
 import {
   getBrands,
   getModels,
