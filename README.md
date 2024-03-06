@@ -20,6 +20,15 @@ cd fipe-help
 yarn
 ```
 
+# Rodar o projeto
+```console
+npx expo start
+```
+(opcional)
+```console
+npx expo start
+```
+
 # 🛠️ Tecnologias
 
 <ul>
