@@ -6,6 +6,7 @@ import {
   Dimensions,
   Modal,
   FlatList,
+  TextInput,
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { CarItem } from "../../data/models";
@@ -38,7 +39,24 @@ export function Select({
     selected,
     onSelectCell,
     onClearSelect,
+    searchText,
+    setSearchText,
+    optionsFiltered,
+    setOptionsFiltered,
   } = useSelectViewModel();
+
+  useEffect(() => {
+    if (searchText === "") {
+      setOptionsFiltered(options);
+    } else {
+      setOptionsFiltered(
+        options?.filter(
+          (item) =>
+            item.nome.toLowerCase().indexOf(searchText.toLowerCase()) > - 1
+        )
+      );
+    }
+  }, [searchText, showOptions]);
 
   useEffect(() => {
     setTextTitle(title);
@@ -55,7 +73,10 @@ export function Select({
       <Text style={styles.title}>{title}</Text>
       <TouchableOpacity
         style={!disabled ? styles.container : styles.containerDisabled}
-        onPress={() => setShowOptions(true)}
+        onPress={() => {
+          setShowOptions(true);
+          setSearchText("");
+        }}
         disabled={disabled}
       >
         <Text style={styles.text} numberOfLines={1}>
@@ -74,8 +95,17 @@ export function Select({
           </TouchableOpacity>
           <Text style={styles.headerTitle}>{title}</Text>
         </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            value={searchText}
+            onChangeText={(txt) => setSearchText(txt)}
+            placeholder="Pesquise"
+          />
+          <Ionicons name="search" size={24} color="#06b2fc" />
+        </View>
         <FlatList
-          data={options}
+          data={optionsFiltered}
           keyExtractor={(item) => String(item.codigo)}
           renderItem={(item) => (
             <CarItemCell
@@ -140,5 +170,19 @@ const styles = StyleSheet.create({
     color: "#ffff",
     fontSize: 16,
     fontWeight: "700",
+  },
+  inputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  input: {
+    height: 50,
+    width: width - 84,
+    borderWidth: 1,
+    borderColor: "#CCC",
+    marginHorizontal: 20,
+    borderRadius: 8,
+    marginVertical: 16,
+    paddingHorizontal: 16,
   },
 });
