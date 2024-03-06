@@ -26,7 +26,7 @@ npx expo start
 ```
 (opcional)
 ```console
-npx expo start
+npx expo start --web
 ```
 
 # 🛠️ Tecnologias
