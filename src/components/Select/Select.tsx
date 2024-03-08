@@ -7,7 +7,7 @@ import {
   TextInput,
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { CarItem } from "../../data/models/car";
+import { CarItem } from "../../data/models";
 import { CarItemCell } from "./CarItemCell";
 import { useSelectViewModel } from "./viewModel/ViewModel";
 import { useEffect } from "react";

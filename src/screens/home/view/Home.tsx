@@ -63,7 +63,7 @@ export function Home() {
       />
       <Select
         options={listCarYears}
-        title="Anos"
+        title="Ano"
         onChangeOptions={(idYear) => setIdYear(idYear)}
         disabled={!idModel}
         clear={idYear === undefined}

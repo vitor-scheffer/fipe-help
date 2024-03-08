@@ -1,5 +1,5 @@
 import { TouchableOpacity, Text } from "react-native";
-import { CarItem } from "../../data/models/car";
+import { CarItem } from "../../data/models";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { styles } from "./styles";
 import { theme } from "../../global/styles/theme";
