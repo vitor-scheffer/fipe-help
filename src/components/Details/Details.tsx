@@ -3,11 +3,11 @@ import {
   SafeAreaView,
   View,
   Text,
-  StyleSheet,
   TouchableOpacity,
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { CarDetails } from "../../data/models/car";
+import { styles } from "./styles";
 
 interface Props {
   isOpen: boolean | undefined;
@@ -65,67 +65,3 @@ export function Details({ isOpen, carData, onClose }: Props) {
     </Modal>
   );
 }
-
-const styles = StyleSheet.create({
-  header: {
-    height: 100,
-    backgroundColor: "#06b2fc",
-    alignItems: "flex-end",
-    flexDirection: "row",
-    paddingHorizontal: 20,
-    paddingBottom: 10,
-  },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: "700",
-    color: "white",
-    paddingLeft: 8,
-  },
-  container: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    marginHorizontal: 20,
-  },
-  image: {
-    width: "100%",
-    alignItems: "center",
-    marginTop: 30,
-  },
-  title: {
-    fontWeight: "500",
-    fontSize: 18,
-    marginVertical: 20,
-  },
-  price: {
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderBlockColor: "black",
-    width: "100%",
-    paddingVertical: 10,
-  },
-  priceText: {
-    fontSize: 18,
-    fontWeight: "700",
-    color: "#08106b",
-  },
-  date: {
-    marginTop: 8,
-    marginBottom: 20,
-  },
-  row: {
-    flexDirection: "row",
-    width: "100%",
-    justifyContent: "flex-start",
-    gap: 30,
-  },
-  carValue: {
-    gap: 6,
-    marginVertical: 10,
-    width: "28%",
-  },
-  textCarValue: {
-    fontWeight: "700",
-    fontSize: 16,
-  },
-});

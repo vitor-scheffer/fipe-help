@@ -1,9 +1,7 @@
 import {
   View,
-  StyleSheet,
   TouchableOpacity,
   Text,
-  Dimensions,
   Modal,
   FlatList,
   TextInput,
@@ -13,6 +11,8 @@ import { CarItem } from "../../data/models/car";
 import { CarItemCell } from "./CarItemCell";
 import { useSelectViewModel } from "./viewModel/ViewModel";
 import { useEffect } from "react";
+import { styles } from "./styles";
+import { theme } from "../../global/styles/theme";
 
 interface Props {
   options: Array<CarItem> | undefined;
@@ -21,8 +21,6 @@ interface Props {
   disabled: boolean;
   clear: boolean;
 }
-
-const { width } = Dimensions.get("window");
 
 export function Select({
   options,
@@ -52,7 +50,7 @@ export function Select({
       setOptionsFiltered(
         options?.filter(
           (item) =>
-            item.nome.toLowerCase().indexOf(searchText.toLowerCase()) > - 1
+            item.nome.toLowerCase().indexOf(searchText.toLowerCase()) > -1
         )
       );
     }
@@ -102,7 +100,7 @@ export function Select({
             onChangeText={(txt) => setSearchText(txt)}
             placeholder="Pesquise"
           />
-          <Ionicons name="search" size={24} color="#06b2fc" />
+          <Ionicons name="search" size={24} color={theme.colors.primary} />
         </View>
         <FlatList
           data={optionsFiltered}
@@ -122,67 +120,3 @@ export function Select({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  title: {
-    marginHorizontal: 20,
-    marginBottom: 6,
-  },
-  container: {
-    height: 50,
-    backgroundColor: "#ecf5ff",
-    borderWidth: 1,
-    marginHorizontal: 20,
-    borderRadius: 6,
-    borderColor: "#CCC",
-    paddingHorizontal: 16,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  containerDisabled: {
-    height: 50,
-    backgroundColor: "#CCC",
-    borderWidth: 1,
-    marginHorizontal: 20,
-    borderRadius: 6,
-    borderColor: "#CCC",
-    paddingHorizontal: 16,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  text: {
-    color: "#555",
-    fontSize: 16,
-    maxWidth: width - 100,
-  },
-  header: {
-    flexDirection: "row",
-    gap: 10,
-    alignItems: "flex-end",
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    backgroundColor: "#06b2fc",
-    height: 100,
-  },
-  headerTitle: {
-    color: "#ffff",
-    fontSize: 16,
-    fontWeight: "700",
-  },
-  inputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  input: {
-    height: 50,
-    width: width - 84,
-    borderWidth: 1,
-    borderColor: "#CCC",
-    marginHorizontal: 20,
-    borderRadius: 8,
-    marginVertical: 16,
-    paddingHorizontal: 16,
-  },
-});

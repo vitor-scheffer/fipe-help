@@ -1,4 +1,6 @@
-import { Modal, View, StyleSheet, ActivityIndicator } from "react-native";
+import { Modal, View, ActivityIndicator } from "react-native";
+import { styles } from "./styles";
+import { theme } from "../../global/styles/theme";
 
 interface Props {
   visible: boolean | undefined;
@@ -9,18 +11,9 @@ export function Loading({ visible }: Props) {
     return (
       <Modal visible={visible} transparent={true} animationType="fade">
         <View style={styles.container}>
-          <ActivityIndicator size="large" color="#06b2fc" />
+          <ActivityIndicator size="large" color={theme.colors.primary} />
         </View>
       </Modal>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: "rgba(24, 24, 24, 0.8)",
-  },
-});
