@@ -12,7 +12,7 @@ import {
   getModels,
   getYears,
   getCarDetails
-} from "../../../data/repositories/car";
+} from "../../../data/repositories";
 
 export const useHomeViewModel = () => {
   const [listCarBrands, setListCarBrands] = useState<Array<CarItem>>();
